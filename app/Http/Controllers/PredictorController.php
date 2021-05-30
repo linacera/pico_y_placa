@@ -31,7 +31,7 @@ class PredictorController extends Controller
         $car = new Car($plate);
         $day = new Day($date);
         $hour = new Hour($hour);
-        $predict = $this->predict($day->dayName, $car->plateLastDigit, $hour->hour);
+        $predict = $this->predict($day->getDayName(), $car->getPlateLastDigit(), $hour->getHour());
         return View("prediction", ["predict"=>$predict, 'plate'=>$plate]);
         
     }
@@ -58,10 +58,9 @@ class PredictorController extends Controller
     }
 
     function checkForForbiddenHours($hour){
-        
-        if($hour >= $this->forbiddenHours["Morning"][0] && $hour <= $this->forbiddenHours["Morning"][1]){
-            return true;
-        }elseif($hour >= $this->forbiddenHours["Afternoon"][0] && $hour <= $this->forbiddenHours["Afternoon"][1]){
+        $forbiddenHoursMorning = $hour >= $this->forbiddenHours["Morning"][0] && $hour <= $this->forbiddenHours["Morning"][1];
+        $forbiddenHoursAfternoon =$hour >= $this->forbiddenHours["Afternoon"][0] && $hour <= $this->forbiddenHours["Afternoon"][1];
+        if($forbiddenHoursAfternoon || $forbiddenHoursMorning){ 
             return true;
         }
         return false;
