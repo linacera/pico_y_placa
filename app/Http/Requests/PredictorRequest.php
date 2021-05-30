@@ -29,7 +29,7 @@ class PredictorRequest extends FormRequest
             //
             'plate' => ['required','string','size:8', new Plate],
             'date' => ['required','string', new Date],
-            'hour' => 'required|string|max:5'
+            'hour' => ['required','string','max:5', 'regex:/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/']
         ];
     }
 }

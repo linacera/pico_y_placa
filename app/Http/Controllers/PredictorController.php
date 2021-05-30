@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Car;
 use App\Models\Day;
+use App\Models\Hour;
 use App\Http\Requests\PredictorRequest;
 
 class PredictorController extends Controller
 {
     private $forbiddenHours = [
-        'Morning'=>['7:00','9:30'],
+        'Morning'=>['07:00','09:30'],
         'Afternoon'=>['16:00','19:30']
     ];
     
@@ -29,6 +30,7 @@ class PredictorController extends Controller
 
         $car = new Car($plate);
         $day = new Day($date);
+        $hour = new Hour($hour);
         print($this->predict($day->dayName, $car->plateLastDigit, $hour));
     }
 
