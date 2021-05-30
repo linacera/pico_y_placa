@@ -10,21 +10,29 @@
 
         <form method="post" action="{{url('/predict')}}">
             @csrf
-            <div class="mb-3">
-                <label for="plate" class="form-label">Plate:</label>
-                <input type="text" name="plate" class="form-control" placeholder="Plate number">
-                <p>{{ $errors->first('plate') }}</p>
+            <div class="row mb-3">
+                <label for="plate" class="col-sm-2 col-form-label">Plate:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="plate" class="form-control" placeholder="Plate number">
+                    <p>{{ $errors->first('plate') }}</p>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="hour" class="form-label">Hour:</label>
-                <input type="text" name ="hour" class="form-control" placeholder="Hour">
-                <p>{{ $errors->first('hour') }}</p>
+            <div class="row mb-3">
+                <label for="hour" class="col-sm-2 col-form-label">Hour:</label>
+                <div class="col-sm-10">
+                    <input type="text" name ="hour" class="form-control" placeholder="Hour">
+                    <p>{{ $errors->first('hour') }}</p>
+                </div>
             </div>
             
-            <div class="mb-3">
-                <label for="date" class="form-label">Date:</label>
-                <input type="text" name="date" class="form-control" placeholder="Date">
-                <p>{{ $errors->first('date') }}</p>
+            <div class="row mb-3">
+                <label for="date" class="col-sm-2 col-form-label">Date:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="date" class="form-control" placeholder="Date">
+                    <div class="error">
+                        <p>{{ $errors->first('date') }}</p>
+                    </div>
+                </div>
             </div>
             <button type="submit" class="btn btn-primary">Predict</button>
         </form>
