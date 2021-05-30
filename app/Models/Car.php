@@ -3,18 +3,27 @@
 namespace App\Models;
 
 class Car{
-    public $plate;
-    public $plateLastDigit;
+    protected $plate;
+    protected $plateLastDigit;
 
     function __construct($plate){
         $this->plate = $plate;
-        $this->plateLastDigit = $this->getPlateLastDigit();
+        $this->plateLastDigit = $this->transformPlateLastDigit();
     }
 
-    function getPlateLastDigit(){
+    function transformPlateLastDigit(){
         $lastDigit = (int)(substr($this->plate ,-1));
         return $lastDigit;
     }
+
+    function getPlateLastDigit(){
+        return $this->plateLastDigit;
+    }
+
+    function getPlate(){
+        return $this->plate;
+    }
+
 }
 
 

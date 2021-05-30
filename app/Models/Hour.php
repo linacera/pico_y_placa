@@ -4,7 +4,7 @@ namespace App\Models;
 
 class Hour
 {
-    public $hour;
+    protected $hour;
 
     function __construct($hour) {
         $this->hour = $this->transformHour($hour);
@@ -14,4 +14,9 @@ class Hour
         $formattedHour = date("H:i",strtotime($hour));
         return $formattedHour;
     }
+
+    function getHour(){
+        return $this->hour;
+    }
+
 }
