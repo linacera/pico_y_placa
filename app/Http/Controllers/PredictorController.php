@@ -11,8 +11,8 @@ use App\Http\Requests\PredictorRequest;
 class PredictorController extends Controller
 {
     private $forbiddenHours = [
-        'Morning'=>['07:00','09:30'],
-        'Afternoon'=>['16:00','19:30']
+        "Morning"=>["07:00","09:30"],
+        "Afternoon"=>["16:00","19:30"]
     ];
     
     private $forbiddenPlatesPerDay = [
@@ -24,39 +24,41 @@ class PredictorController extends Controller
     ];
     
     function getInput(PredictorRequest $request){
-        $plate = $request->input('plate');
-        $date = $request->input('date');
-        $hour = $request->input('hour');
+        $plate = $request->input("plate");
+        $date = $request->input("date");
+        $hour = $request->input("hour");
 
         $car = new Car($plate);
         $day = new Day($date);
         $hour = new Hour($hour);
-        print($this->predict($day->dayName, $car->plateLastDigit, $hour));
+        $predict = $this->predict($day->dayName, $car->plateLastDigit, $hour->hour);
+        return View("prediction", ["predict"=>$predict, 'plate'=>$plate]);
+        
     }
 
     function predict($dayName, $lastDigit, $hour){
-        $goMessage = 'You are free to go!!';
         if($this->checkForWeekend($dayName)){
-            return($goMessage);
+            return(true);
         }else{
             if($this->checkForForbiddenHours($hour)){
                 if($this->checkForForbiddenPlates($lastDigit, $dayName)){
-                    return('You cant go out!');
+                    return(false);
                 }
             }
         }
-        return($goMessage);
+        return(true);
 
     }
 
     function checkForWeekend($dayName){
-        if($dayName == 'Sunday' || $dayName == 'Saturday'){
+        if($dayName == "Sunday" || $dayName == "Saturday"){
             return true;
         }
         return false;
     }
 
     function checkForForbiddenHours($hour){
+        
         if($hour >= $this->forbiddenHours["Morning"][0] && $hour <= $this->forbiddenHours["Morning"][1]){
             return true;
         }elseif($hour >= $this->forbiddenHours["Afternoon"][0] && $hour <= $this->forbiddenHours["Afternoon"][1]){
