@@ -3,19 +3,15 @@
 namespace App\Models;
 
 class Day {
-    $dayName;
-    private days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    public $dayName;
 
-    function __constructor($date) {
+    function __construct($date) {
         $this->dayName = $this->findDayName($date);
     }
 
     function findDayName($dateString) {
-        $dateFormatted = new Date($dateString);
-        $dayNumber = $dateFormatted.getDay();
-        return $this->days[dayNumber];
+        $dayName = date('l', strtotime($dateString));
+        return $dayName;
     }
-
-
 
 }
