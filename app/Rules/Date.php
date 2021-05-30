@@ -3,6 +3,7 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
+use DateTime;
 
 class Date implements Rule
 {
@@ -25,11 +26,12 @@ class Date implements Rule
      */
     public function passes($attribute, $value)
     {
-        //dd(strtotime($value));
-        if(strtotime($value)){
-            return true;
+        $date = DateTime::createFromFormat('d/m/Y', $value);
+        $errors = DateTime::getLastErrors();
+        if (!empty($errors['warning_count'])) {
+            return false;
         }
-        return false;
+        return true;
     }
 
     /**
@@ -39,6 +41,6 @@ class Date implements Rule
      */
     public function message()
     {
-        return 'Must  be a valid date in the format dd-mm-yyyy or dd/mm/yyyy.';
+        return 'Must  be a valid date in the format dd/mm/yyyy.';
     }
 }
