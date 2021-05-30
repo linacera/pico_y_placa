@@ -1,3 +1,12 @@
+#Pico y placa predictor
+This predictor will tell if you can be on the road or not based in 2019 pico y placa rules.
+The rules are:
+* Between 7:00 to 9:30 in the morning and 16:00 to 19:30 in the afternoon the restricted plate numbers cannot drive around Quito.
+* For each day 2 plate numbers are restricted: Monday: 1-2, Tuesday: 3-4, Wednesday: 5-6, Thursday: 7-8, Friday: 9-0.
+* For weekends there are no restrictions.
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
