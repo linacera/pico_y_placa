@@ -25,7 +25,7 @@ class Date implements Rule
      */
     public function passes($attribute, $value)
     {
-        //
+        //dd(strtotime($value));
         if(strtotime($value)){
             return true;
         }

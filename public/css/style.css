@@ -1,0 +1,26 @@
+.container{
+    margin-top: 30px;
+    width: 600px;
+    text-align: center;
+}
+
+.error{
+    color: red;
+}
+
+.title{
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+@media (max-width: 1200px) {
+
+    .container{
+        margin-top: 30px;
+    }
+
+    img{
+        size: 100px;
+    }
+
+} 

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 
 <body>
     <div class="container">
-        <h1 class="display-3">Pico y Placa Predictor</h1>
+        <h1 class="display-3 title">Pico y Placa Predictor</h1>
 
         <form method="post" action="{{url('/predict')}}">
             @csrf
@@ -15,14 +16,18 @@
                 <label for="plate" class="col-sm-2 col-form-label">Plate:</label>
                 <div class="col-sm-10">
                     <input type="text" name="plate" class="form-control" placeholder="Plate number" value="{{ old('plate') }}">
-                    <p>{{ $errors->first('plate') }}</p>
+                    @if($errors->has('plate'))
+                        <p class="error">{{ $errors->first('plate') }}</p>
+                    @endif
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="hour" class="col-sm-2 col-form-label">Hour:</label>
                 <div class="col-sm-10">
                     <input type="text" name ="hour" class="form-control" placeholder="Hour" value="{{ old('hour') }}">
-                    <p>{{ $errors->first('hour') }}</p>
+                    @if($errors->has('hour'))
+                        <p class="error">{{ $errors->first('hour') }}</p>
+                    @endif
                 </div>
             </div>
             
@@ -31,9 +36,7 @@
                 <div class="col-sm-10">
                     <input type="text" name="date" class="form-control" placeholder="Date" value="{{ old('date') }}">
                     @if($errors->has('date'))
-                    <div class="error">
-                        <p>{{ $errors->first('date') }}</p>
-                    </div>
+                        <p  class="error">{{ $errors->first('date') }}</p>
                     @endif
                 </div>
             </div>
